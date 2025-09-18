@@ -1,11 +1,13 @@
 #!/bin/bash
 
+output="${1:-all_texts.txt}"
+
+# make sure file doesnt already exist
 if [[ -e "$output" ]]; then
     echo "Error: Output file '$output' already exists."
     exit 1
 fi
 
-output="${1:-all_texts.txt}"
 > "$output"
 
 # search for all non-binary and non hidden files
