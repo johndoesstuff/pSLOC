@@ -14,6 +14,7 @@ files=$(find . \
     ! -name "$(basename "$output")" \
     ! -path "./$output" \
     ! -path "*/.*" \
+    ! -path "*build*" \
     ! -name '*Zone.Identifier*' \
     -exec sh -c 'head -c 4096 "$1" | grep -Iq . && echo "$1"' _ {} \; \
     | sort -u)
