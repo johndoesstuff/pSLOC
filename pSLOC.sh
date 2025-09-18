@@ -57,6 +57,8 @@ find_excludes=(
     ! -name '*Zone.Identifier*'
     ! -name 'Cargo.lock'
     ! -name 'Cargo.toml'
+    ! -name 'package-lock.json'
+    ! -name 'package.json'
     ! -name '*.svg'
 )
 
