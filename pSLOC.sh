@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -e "$output" ]]; then
+    echo "Error: Output file '$output' already exists."
+    exit 1
+fi
+
 output="${1:-all_texts.txt}"
 > "$output"
 

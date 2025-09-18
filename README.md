@@ -8,3 +8,9 @@ Concatenate all lines of source code in a project into a text file for printing.
 `./sLOC [output.txt]`
 
 By default sLOC outputs to `all_texts.txt`
+
+### Add to PATH
+
+To use pSLOC anywhere symlink pSLOC to `/usr/local/bin`:
+
+`sudo ln -s pSLOC.sh /usr/local/bin/pSLOC`
