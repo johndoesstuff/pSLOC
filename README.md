@@ -11,6 +11,9 @@ To use pSLOC anywhere symlink pSLOC to `/usr/local/bin`:
 
 ### Usage
 
-`pSLOC [output.txt]`
+`pSLOC [-o output_file] [-e exclude_pattern] ...`
 
-By default pSLOC outputs to `all_texts.txt`
+-o   Output file (default: pSLOC.txt)
+-e   Exclude files/directories matching pattern
+-h   Show help message
+
