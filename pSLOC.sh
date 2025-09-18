@@ -8,7 +8,14 @@ if [[ -e "$output" ]]; then
     exit 1
 fi
 
-files=$(find . -type f ! -name "$(basename "$output")" -exec file {} \; | grep text | cut -d: -f1 | awk '!/\/\./')
+files=$(find . \
+    -type f \
+    ! -name "$(basename "$output")" \
+    ! -path "./$output" \
+    ! -path "*/.*" \
+    ! -name '*Zone.Identifier*' \
+    -exec grep -Iq . {} \; \
+    -print | sort -u)
 
 > "$output"
 
