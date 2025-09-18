@@ -14,7 +14,10 @@ files=$(find . \
     ! -name "$(basename "$output")" \
     ! -path "./$output" \
     ! -path "*/.*" \
-    ! -path "*build*" \
+    ! -path "*\/build\/*" \
+    ! -path "*\/release\/*" \
+    ! -path "*\/node_modules\/*" \
+    ! -path "*\/dist\/*" \
     ! -name '*Zone.Identifier*' \
     -exec sh -c 'head -c 4096 "$1" | grep -Iq . && echo "$1"' _ {} \; \
     | sort -u)
@@ -22,12 +25,36 @@ files=$(find . \
 # init output
 > "$output"
 
+# how many files?
+total=$(echo "$files" | wc -l)
+count=0
+
+printf "Found %d files...\n" "$total"
+
+# progress bar
+draw_progress() {
+    local progress=$1
+    local total=$2
+    local width=40
+    local filled=$(( progress * width / total ))
+    local empty=$(( width - filled ))
+    printf "\r["
+    printf "%-${filled}s" "" | tr ' ' '#'
+    printf "%-${empty}s" "" | tr ' ' '-'
+    printf "] %d/%d" "$progress" "$total"
+}
+
 # cat files to output
 while IFS= read -r file; do
     echo "===== $file =====" >> "$output"
     cat "$file" >> "$output"
     echo -e "\n" >> "$output"
+    count=$((count + 1))
+    draw_progress $count $total
 done <<< "$files"
+
+# newline after progress
+echo
 
 # success
 lines=$(wc -l < "$output")
