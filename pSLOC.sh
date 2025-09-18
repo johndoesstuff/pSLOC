@@ -18,12 +18,21 @@ files=$(find . \
     ! -path "*\/release\/*" \
     ! -path "*\/node_modules\/*" \
     ! -path "*\/dist\/*" \
+    ! -path "*\/target\/*" \
+    ! -path "*\/bin\/*" \
+    ! -path "*\/lib\/*" \
     ! -name '*Zone.Identifier*' \
+    ! -name 'Cargo.lock' \
+    ! -name 'Cargo.toml' \
+    ! -name '*.svg' \
     -exec sh -c 'head -c 4096 "$1" | grep -Iq . && echo "$1"' _ {} \; \
     | sort -u)
 
 # init output
 > "$output"
+
+# hide cursor
+tput civis
 
 # how many files?
 total=$(echo "$files" | wc -l)
@@ -59,3 +68,6 @@ echo
 # success
 lines=$(wc -l < "$output")
 printf "Written %d lines to %s\n" "$lines" "$output"
+
+# show cursor
+tput cnorm
