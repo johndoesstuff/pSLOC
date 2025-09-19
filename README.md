@@ -5,9 +5,9 @@ Concatenate all lines of source code in a project into a text file for printing.
 
 ### Add to PATH
 
-To use pSLOC anywhere symlink pSLOC to `/usr/local/bin`:
+To use pSLOC anywhere symlink pSLOC to `/usr/local/bin` in the pSLOC directory:
 
-`sudo ln -s pSLOC.sh /usr/local/bin/pSLOC`
+`sudo ln -sf "$(pwd)/pSLOC.sh" /usr/local/bin/pSLOC`
 
 ### Usage
 
