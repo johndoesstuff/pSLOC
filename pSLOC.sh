@@ -60,6 +60,7 @@ find_excludes=(
     ! -name 'package-lock.json'
     ! -name 'package.json'
     ! -name '*.svg'
+    ! -name 'tags'
 )
 
 # add custom exclusions
