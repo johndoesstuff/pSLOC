@@ -52,6 +52,7 @@ find_excludes=(
     ! -path "*\/dist\/*"
     ! -path "*\/target\/*"
     ! -path "*\/bin\/*"
+    ! -path "*\/out\/*"
     ! -path "*\/lib\/*"
     # misc
     ! -name '*Zone.Identifier*'
@@ -61,6 +62,7 @@ find_excludes=(
     ! -name 'package.json'
     ! -name '*.svg'
     ! -name 'tags'
+    ! -name 'LICENSE'
 )
 
 # add custom exclusions
